@@ -1,188 +1,220 @@
+:root {
+    --nav-height: 64px;
+    --nav-bg-start: rgba(255, 126, 95, 0.9);
+    --nav-bg-end: rgba(79, 140, 255, 0.9);
+    --nav-blur: 10px;
+    --nav-radius: 14px;
+    --nav-contrast: rgba(255, 255, 255, 0.95);
+    --nav-muted: rgba(255, 255, 255, 0.85);
+    --hamburger: rgba(255, 255, 255, 0.95);
+    --hamburger-open: rgba(8, 17, 38, 0.95);
+    --hamburger-hover: rgba(255, 255, 255, 1);
+    --backdrop: rgba(6, 12, 24, 0.45);
+}
+
+/* Modern floating glassmorphic navbar */
 .navbar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 16px;
+    z-index: 1400;
+    height: var(--nav-height);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
-    padding: 12px 18px;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-    color: var(--text);
-    position: sticky;
-    top: 0;
-    font-weight: 600;
-    z-index: 1200;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    width: 100%;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-    /* component-level variables to control hover/active colors */
-    --hamburger: var(--text);
-    --hamburger-hover: #ffffff;
-    --nav-link-hover-bg: rgba(255, 255, 255, 0.12);
-    --nav-link-hover-color: #ffffff;
-    --nav-link-active-bg: var(--primary-700);
-    --nav-link-active-color: #ffffff;
+    padding: 0 1rem;
+    width: min(1100px, calc(100% - 32px));
+    border-radius: var(--nav-radius);
+    background: linear-gradient(90deg, var(--nav-bg-start), var(--nav-bg-end));
+    color: var(--nav-contrast);
+    box-shadow: 0 8px 40px rgba(12, 24, 40, 0.18);
+    backdrop-filter: blur(var(--nav-blur)) saturate(1.05);
+    -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .navbar .brand {
     font-weight: 700;
-    letter-spacing: 0.2px;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    font-size: 1.25rem;
-    color: var(--text);
+    font-size: 1.125rem;
+    margin-left: 8px;
 }
 
 .navbar nav {
+    margin-left: auto;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
 }
 
 .navbar a {
-    color: var(--text);
+    color: var(--nav-contrast);
     text-decoration: none;
     padding: 8px 12px;
-    border-radius: 8px;
-    transition: background .18s ease, color .18s ease, transform .18s ease;
+    border-radius: 10px;
     font-weight: 600;
+    transition: background .18s ease, transform .12s ease, color .12s ease;
 }
 
 .navbar a:hover {
-    background: var(--nav-link-hover-bg);
-    color: var(--nav-link-hover-color);
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--nav-contrast);
+    transform: translateY(-2px);
 }
 
 .navbar a.active {
-    background: var(--nav-link-active-bg);
-    color: var(--nav-link-active-color);
+    background: rgba(255, 255, 255, 0.18);
+    color: #081126;
 }
 
+/* hamburger */
 .hamburger {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     background: transparent;
     border: none;
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
     padding: 6px;
+    cursor: pointer;
+    color: var(--hamburger);
 }
 
-.hamburger span {
+.hamburger svg {
     display: block;
-    width: 22px;
-    height: 2.5px;
-    margin: 4px 0;
-    border-radius: 2px;
-    background: var(--hamburger);
-    transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .hamburger:hover span {
     background: var(--hamburger-hover);
 }
 
-.hamburger:focus {
+.hamburger:hover {
+    /* subtle hover highlight, keep button mostly transparent */
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.hamburger:hover span {
+    background: var(--hamburger-hover);
+}
+
+/* keep the button background transparent even when open to avoid a visible square */
+.hamburger.open {
     background: transparent;
-    outline: none;
 }
 
-/* when the menu is open, make the bars visible on gradient */
 .hamburger.open span {
-    background: var(--nav-link-active-color);
+    /* bars switch to a high-contrast color when menu is open */
+    background: var(--hamburger-open);
 }
 
+/* color swap for svg icon when open */
+.hamburger.open {
+    color: var(--hamburger-open);
+}
+
+/* keyboard focus ring for accessibility */
 .hamburger:focus-visible {
-    box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.16);
-    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(9, 30, 66, 0.18);
+    border-radius: 10px;
 }
 
-.hamburger.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
+/* bar transforms removed as bars are replaced with an SVG icon */
 
-.hamburger.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
-
-
+/* mobile layout */
 @media (max-width: 900px) {
+    .navbar {
+        height: auto;
+        padding: 12px;
+        flex-wrap: nowrap;
+    }
+
+    .navbar .brand {
+        font-size: 1rem;
+    }
+
     .hamburger {
         display: flex;
+        margin-left: auto;
     }
-
-    .navbar {
-        padding: 10px 14px;
-    }
-
 
     .navbar nav {
         position: absolute;
-        top: calc(100% + 8px);
-        left: 8px;
-        right: 8px;
-        background: var(--surface);
-        color: var(--text);
-        border-radius: 10px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        display: flex;
+        left: 12px;
+        right: 12px;
+        top: calc(var(--nav-height) + 28px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96));
+        color: #0b1220;
+        border-radius: 12px;
+        padding: 12px;
         flex-direction: column;
-        gap: 8px;
-        padding: 8px 12px;
-        transform-origin: top;
-        transform: scaleY(0.96) translateY(-6px);
+        gap: 6px;
+        transform-origin: top center;
+        transform: translateY(-6px) scaleY(0.98);
         opacity: 0;
         pointer-events: none;
-        transition: transform .22s ease, opacity .18s ease;
-        z-index: 1100;
+        box-shadow: 0 10px 40px rgba(2, 6, 23, 0.12);
+        z-index: 1300;
+        border: 1px solid rgba(6, 12, 24, 0.06);
+    }
+
+    .nav-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: transparent;
+        z-index: 1200;
+    }
+
+    .nav-backdrop.visible {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: var(--backdrop);
+        z-index: 1200;
     }
 
     .navbar nav.open {
-        transform: scaleY(1) translateY(0);
+        transform: translateY(0) scaleY(1);
         opacity: 1;
         pointer-events: auto;
     }
 
     .navbar a {
-        display: block;
-        padding: 12px 16px;
-        border-radius: 8px;
-        color: var(--text);
+        color: #0b1220;
         background: transparent;
-        text-align: center;
+        padding: 10px 12px;
+        border-radius: 8px;
     }
 
     .navbar a:hover {
-        background: var(--nav-link-hover-bg);
-        color: var(--nav-link-hover-color);
+        background: rgba(6, 12, 24, 0.04);
+        color: #081126;
     }
 
     .navbar a.active {
-        background: var(--nav-link-active-bg);
-        color: var(--nav-link-active-color);
+        background: var(--nav-bg-start);
+        color: #fff;
     }
 }
 
 @media (max-width: 420px) {
     .navbar {
-        padding: 8px 10px;
+        width: calc(100% - 20px);
+        left: 10px;
+        transform: none;
+        border-radius: 10px;
     }
 
-    .navbar .brand {
-        font-size: 1.05rem;
-    }
-
-    .hamburger {
-        width: 36px;
-        height: 36px;
-    }
-
-    .hamburger span {
-        width: 20px;
+    .navbar nav {
+        top: calc(var(--nav-height) + 22px);
+        left: 8px;
+        right: 8px;
     }
 }

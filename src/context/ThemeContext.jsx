@@ -35,23 +35,7 @@ const themes = {
             low: '#81c784',
         }
     },
-    purple: {
-        background: '#f3e5f5',
-        surface: '#ffffff',
-        primary: '#9c27b0',
-        secondary: '#673ab7',
-        text: '#333333',
-        textLight: '#666666',
-        border: '#e1bee7',
-        error: '#f44336',
-        success: '#4caf50',
-        warning: '#ff9800',
-        priority: {
-            high: '#d32f2f',
-            medium: '#f57c00',
-            low: '#388e3c',
-        }
-    }
+    
 };
 
 export const ThemeContext = createContext(null);

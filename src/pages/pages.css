@@ -119,19 +119,35 @@
 }
 
 .landing .features>div {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.kanban {
+/* remove bullets in landing page lists */
+.landing ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0;
+}
+
+.landing ul li {
+    padding: 6px 0;
+}
+
+/* footer styles moved to components/Footer.css */
+
+.board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
 }
 
-.kanban-col {
+.board-col {
     background: #f8fafc;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
@@ -139,7 +155,7 @@
     min-height: 400px;
 }
 
-.kanban-card {
+.board-card {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -239,7 +255,7 @@
 }
 
 @media (max-width: 720px) {
-    .kanban {
+    .board {
         grid-template-columns: 1fr;
     }
 }

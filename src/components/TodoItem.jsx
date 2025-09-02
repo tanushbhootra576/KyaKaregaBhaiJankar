@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Pin, PinOff, Trash2, AlertTriangle } from 'lucide-react';
 import '../styles/TodoItem.css';
 
 export const TodoItem = ({
@@ -57,10 +58,12 @@ export const TodoItem = ({
                         <option value="doing">Doing</option>
                         <option value="done">Done</option>
                     </select>
-                    <button onClick={() => onTogglePin(todo.id)}>
-                        {todo.pinned ? '📌' : '📍'}
+                    <button onClick={() => onTogglePin(todo.id)} aria-label={todo.pinned ? 'Unpin' : 'Pin'}>
+                        {todo.pinned ? <Pin size={18} /> : <PinOff size={18} />}
                     </button>
-                    <button onClick={() => onDelete(todo.id)}>🗑️</button>
+                    <button onClick={() => onDelete(todo.id)} aria-label="Delete">
+                        <Trash2 size={18} />
+                    </button>
                 </div>
             </div>
 
@@ -84,7 +87,9 @@ export const TodoItem = ({
                     }}
                 />
                 {todo.dueDate && <span className={`due ${overdue ? 'overdue' : ''}`}>Due: {new Date(todo.dueDate).toLocaleDateString()}</span>}
-                {overdue && <span className="warn">⚠ Overdue</span>}
+                {overdue && (
+                    <span className="warn"><AlertTriangle size={14} /> Overdue</span>
+                )}
             </div>
 
             <div className="timer">

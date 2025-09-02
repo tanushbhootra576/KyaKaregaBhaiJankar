@@ -47,7 +47,7 @@ export const CalendarPage = () => {
 
     return (
         <section className="page">
-            <div className="page-header"><h2>Calendar</h2></div>
+
             <div className="card">
                 <div className="cal-header">
                     <button onClick={() => setCurrent(addMonths(current, -1))}>◀</button>

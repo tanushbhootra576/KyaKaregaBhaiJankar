@@ -33,7 +33,7 @@ export const AnalyticsPage = () => {
 
     return (
         <section className="page">
-            <div className="page-header"><h2>Analytics</h2></div>
+           
             <div className="grid-2">
                 <div className="card">
                     <h3>Weekly Completions</h3>

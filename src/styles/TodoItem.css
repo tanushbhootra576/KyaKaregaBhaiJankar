@@ -1,21 +1,23 @@
 /* TodoItem.css */
+
 .todo-item {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    border-radius: 14px;
+    padding: 1.25rem;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    margin-bottom: .75rem;
+    position: relative;
 }
 
 .todo-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
 }
 
 .todo-item.pinned {
-    border: 2px solid var(--accent);
-    background: linear-gradient(to right bottom, var(--surface), var(--bg-soft));
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(79, 140, 255, .2);
 }
 
 .todo-header {
@@ -44,7 +46,7 @@
 }
 
 .todo-actions select {
-    padding: .5rem .75rem;
+    padding: .45rem .6rem;
     border: 1px solid var(--border);
     border-radius: 10px;
     background: var(--surface);
@@ -56,13 +58,11 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: .5rem;
-    font-size: 1.2rem;
+    padding: .4rem;
+    font-size: 1.1rem;
     color: var(--text);
-    opacity: 0.8;
-    transition: all 0.2s ease;
-    transition: transform .2s ease;
-    color: var(--text);
+    opacity: 0.85;
+    transition: transform .15s ease, opacity .15s ease;
 }
 
 .todo-actions button:hover {
@@ -74,24 +74,50 @@
     gap: 8px;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 0.5rem;
 }
 
 .meta-row input {
-    padding: .35rem .5rem;
+    padding: .4rem .6rem;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface-2);
     color: var(--text);
 }
 
+/* subtle placeholder color */
+.meta-row input::placeholder,
+.subtasks input::placeholder,
+.dates input::placeholder {
+    color: var(--muted);
+    opacity: .8;
+}
+
+/* style Add Tags as a secondary/ghost button */
+.meta-row button {
+    padding: .45rem .75rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.meta-row button:hover {
+    background: var(--bg-soft);
+    border-color: var(--primary-600);
+}
+
 .dates {
     display: flex;
     gap: 10px;
     align-items: center;
+    margin: 0.5rem 0;
 }
 
 .dates input[type="date"] {
-    padding: .35rem .5rem;
+    padding: .4rem .6rem;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface-2);
@@ -105,24 +131,39 @@
 
 .warn {
     color: var(--danger);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .timer {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    margin-top: .25rem;
+}
+
+.timer label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .timer button {
-    padding: .35rem .6rem;
+    padding: .4rem .7rem;
     border-radius: 8px;
     background: var(--primary);
-    color: var(--text);
+    color: #fff;
     border: none;
 }
 
 .timer button+button {
     background: var(--primary-600);
+}
+
+/* muted style for the "min logged" text */
+.timer span:last-child {
+    color: var(--muted);
 }
 
 .subtasks {
@@ -150,7 +191,7 @@
 
 .subtasks input[type="text"] {
     flex: 1;
-    padding: .35rem .5rem;
+    padding: .4rem .6rem;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface-2);
@@ -158,25 +199,38 @@
 }
 
 .subtasks button {
-    padding: .35rem .75rem;
+    padding: .4rem .75rem;
     background: var(--success);
-    color: var(--text);
+    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
-/* Priority colors */
-.todo-item[data-priority="high"] {
-    box-shadow: inset -3px 0 0 0 #f44336;
+/* Priority accent line */
+.todo-item[data-priority="high"]::before,
+.todo-item[data-priority="medium"]::before,
+.todo-item[data-priority="low"]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
 }
 
-.todo-item[data-priority="medium"] {
-    box-shadow: inset -3px 0 0 0 #ff9800;
+.todo-item[data-priority="high"]::before {
+    background: #f44336;
 }
 
-.todo-item[data-priority="low"] {
-    box-shadow: inset -3px 0 0 0 #22c55e;
+.todo-item[data-priority="medium"]::before {
+    background: #ff9800;
+}
+
+.todo-item[data-priority="low"]::before {
+    background: #22c55e;
 }
 
 /* Mobile-friendly hover states */
