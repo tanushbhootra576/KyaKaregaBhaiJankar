@@ -1,0 +1,40 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 100%);
+    color: var(--text);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar .brand {
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 12px;
+}
+
+.navbar a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background .2s ease, color .2s ease;
+}
+
+.navbar a:hover {
+    background: #1f2937;
+    color: #fff;
+}
+
+.navbar a.active {
+    background: var(--primary-700);
+    color: #fff;
+}

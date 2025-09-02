@@ -1,0 +1,184 @@
+.page {
+    padding: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+}
+
+.landing {
+    text-align: center;
+}
+
+.landing .cta {
+    margin: 16px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.landing .btn {
+    background: #111827;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.landing .btn.ghost {
+    background: transparent;
+    color: #111827;
+    border: 1px solid #111827;
+}
+
+.landing .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.landing .features>div {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.kanban {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.kanban-col {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 400px;
+}
+
+.kanban-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.calendar-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.cal-grid-header {
+    margin-bottom: 6px;
+}
+
+.cal-cell {
+    min-height: 100px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cal-head {
+    background: #f3f4f6;
+    border: none;
+    font-weight: 600;
+}
+
+.cal-date {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.cal-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cal-task {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cal-task.high {
+    border-color: #fecaca;
+    background: #fee2e2;
+}
+
+.cal-task.medium {
+    border-color: #fde68a;
+    background: #fef3c7;
+}
+
+.cal-task.low {
+    border-color: #bbf7d0;
+    background: #dcfce7;
+}
+
+.cal-more {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.cal-cell.today {
+    outline: 2px solid #60a5fa;
+}
+
+.cal-cell.muted {
+    opacity: .5;
+}
+
+@media (max-width: 720px) {
+    .kanban {
+        grid-template-columns: 1fr;
+    }
+}

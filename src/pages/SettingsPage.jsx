@@ -1,0 +1,19 @@
+import { useTheme } from '../context/ThemeContext';
+import './pages.css';
+
+export const SettingsPage = () => {
+    const { theme, toggleTheme } = useTheme();
+    return (
+        <section className="page">
+            <div className="page-header"><h2>Settings</h2></div>
+            <div className="card">
+                <label htmlFor="theme">Theme</label>
+                <select id="theme" value={theme} onChange={(e) => toggleTheme(e.target.value)}>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="purple">Purple</option>
+                </select>
+            </div>
+        </section>
+    );
+}

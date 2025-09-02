@@ -9,6 +9,11 @@ export interface Todo {
   pinned: boolean;
   notes?: string;
   subtasks: SubTask[];
+  tags?: string[];
+  project?: string;
+  status?: 'todo' | 'doing' | 'done';
+  estimateMinutes?: number;
+  timeLogs?: { startedAt: number; stoppedAt: number | null; durationMs: number }[];
 }
 
 export interface SubTask {
