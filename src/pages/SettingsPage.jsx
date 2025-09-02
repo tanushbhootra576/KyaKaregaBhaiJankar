@@ -11,7 +11,6 @@ export const SettingsPage = () => {
                 <select id="theme" value={theme} onChange={(e) => toggleTheme(e.target.value)}>
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
-                    <option value="purple">Purple</option>
                 </select>
             </div>
         </section>

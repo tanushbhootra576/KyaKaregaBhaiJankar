@@ -1,53 +1,85 @@
 /* TodoList.css */
 .todo-list-container {
-    max-width: 980px;
-    margin: 1.5rem auto;
-    padding: 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+
+    @media (max-width: 900px) {
+        .todo-list-container {
+            max-width: 95vw;
+            padding: 1rem;
+        }
+
+        .todo-list-title {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .todo-list-container {
+            max-width: 100vw;
+            padding: 0.5rem;
+        }
+
+        .todo-list-title {
+            font-size: 1rem;
+        }
+
+        .todo-list {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .todo-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .todo-header h1 {
     color: var(--text);
     text-align: left;
-    margin-bottom: .75rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .progress-bar {
     width: 100%;
-    height: 8px;
-    background: #0b1222;
-    border: 1px solid var(--border);
+    height: 10px;
+    background: var(--bg-soft);
     border-radius: 999px;
     overflow: hidden;
 }
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-700), var(--accent));
-    transition: width .3s ease;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width .4s ease-in-out;
 }
 
 .todo-controls {
     display: flex;
-    gap: .5rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin: 2rem 0;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .search-input,
 .sort-select {
-    padding: .5rem .6rem;
+    padding: .75rem 1rem;
     border: 1px solid var(--border);
-    background: var(--surface-2);
+    background: var(--surface);
     color: var(--text);
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
     font-size: .95rem;
 }
 
@@ -78,7 +110,7 @@
 .add-button {
     padding: .75rem 1rem;
     background: var(--primary);
-    color: #fff;
+    color: var(--text);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -111,7 +143,7 @@
 
 .tag {
     background: #211a3e;
-    color: #cdb9ff;
+    color: var(--muted);
     border: 1px solid var(--border);
     padding: 2px 8px;
     border-radius: 16px;

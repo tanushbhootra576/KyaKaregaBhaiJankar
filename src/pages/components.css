@@ -1,0 +1,158 @@
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 900px) {
+
+        .analytics-grid,
+        .calendar-container {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+
+        .page-title {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .analytics-grid,
+        .calendar-container {
+            grid-template-columns: 1fr !important;
+            padding: 1rem !important;
+        }
+
+        .page-title {
+            font-size: 1rem;
+        }
+    }
+
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.column {
+    background: var(--surface-2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 500px;
+}
+
+.column-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.column-title {
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Analytics page styles */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-title {
+    color: var(--muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Calendar styles */
+.calendar-container {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* Common utilities */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-low {
+    background: var(--bg-soft);
+    color: var(--text);
+}
+
+.status-medium {
+    background: var(--warn);
+    color: var(--text);
+}
+
+.status-high {
+    background: var(--danger);
+    color: white;
+}
