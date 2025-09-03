@@ -67,15 +67,34 @@
 /* Analytics page styles */
 .analytics-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
     margin-bottom: 2rem;
+    align-items: stretch;
+}
+
+/* Large to medium screens: 3 -> 2 columns */
+@media (max-width: 1200px) {
+    .analytics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Small screens: single column, safe padding */
+@media (max-width: 720px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .page .card h3 {
+        font-size: 1.05rem;
+    }
 }
 
 .stat-card {
     background: var(--surface);
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

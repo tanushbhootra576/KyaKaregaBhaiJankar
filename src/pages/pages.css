@@ -44,7 +44,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -126,6 +126,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* Helper for responsive charts to keep height consistent */
+.chart-wrap {
+    width: 100%;
+    min-height: 240px;
 }
 
 /* remove bullets in landing page lists */

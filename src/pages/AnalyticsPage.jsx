@@ -34,7 +34,7 @@ export const AnalyticsPage = () => {
     return (
         <section className="page">
            
-            <div className="grid-2">
+            <div className="analytics-grid">
                 <div className="card">
                     <h3>Weekly Completions</h3>
                     <ResponsiveContainer width="100%" height={280}>
