@@ -8,7 +8,7 @@ const useTodosState = () => {
         const savedTodos = localStorage.getItem('todos');
         return savedTodos ? JSON.parse(savedTodos).map(todo => ({
             ...todo,
-            createdAt: new Date(todo.createdAt),
+            createdAt: todo.createdAt ? new Date(todo.createdAt) : new Date(),
             dueDate: todo.dueDate ? new Date(todo.dueDate) : null,
             endDate: todo.endDate ? new Date(todo.endDate) : null
         })) : [];
@@ -82,7 +82,13 @@ const useTodosState = () => {
             prev.map(todo => {
                 if (todo.id !== id) return todo;
                 const nextCompleted = !todo.completed;
-                return { ...todo, completed: nextCompleted, completedAt: nextCompleted ? new Date() : null };
+                const nextStatus = nextCompleted ? 'done' : 'todo';
+                return {
+                    ...todo,
+                    completed: nextCompleted,
+                    completedAt: nextCompleted ? new Date() : null,
+                    status: nextStatus,
+                };
             })
         );
     }, []);
@@ -134,7 +140,16 @@ const useTodosState = () => {
     }, []);
 
     const updateStatus = useCallback((id, status) => {
-        setTodos(prev => prev.map(t => t.id === id ? { ...t, status } : t));
+        setTodos(prev => prev.map(t => {
+            if (t.id !== id) return t;
+            const completed = status === 'done';
+            return {
+                ...t,
+                status,
+                completed,
+                completedAt: completed ? new Date() : null,
+            };
+        }));
     }, []);
 
     const addTags = useCallback((id, tags) => {
@@ -147,7 +162,14 @@ const useTodosState = () => {
 
     const startTimer = useCallback((id) => {
         const now = Date.now();
-        setTodos(prev => prev.map(t => t.id === id ? { ...t, timeLogs: [...(t.timeLogs || []), { startedAt: now, stoppedAt: null, durationMs: 0 }] } : t));
+        setTodos(prev => prev.map(t => {
+            if (t.id !== id) return t;
+            const logs = [...(t.timeLogs || [])];
+            const hasRunning = logs.some(l => !l.stoppedAt);
+            if (hasRunning) return t; // already running; ignore extra starts
+            logs.push({ startedAt: now, stoppedAt: null, durationMs: 0 });
+            return { ...t, timeLogs: logs };
+        }));
     }, []);
 
     const stopTimer = useCallback((id) => {
@@ -155,10 +177,16 @@ const useTodosState = () => {
         setTodos(prev => prev.map(t => {
             if (t.id !== id) return t;
             const logs = [...(t.timeLogs || [])];
-            const last = logs[logs.length - 1];
-            if (last && !last.stoppedAt) {
-                last.stoppedAt = now;
-                last.durationMs = now - last.startedAt;
+            // stop the most recent running log if present
+            for (let i = logs.length - 1; i >= 0; i--) {
+                if (!logs[i].stoppedAt) {
+                    logs[i] = {
+                        ...logs[i],
+                        stoppedAt: now,
+                        durationMs: Math.max(0, now - logs[i].startedAt)
+                    };
+                    break;
+                }
             }
             return { ...t, timeLogs: logs };
         }));
@@ -167,11 +195,23 @@ const useTodosState = () => {
     const totalTimeMs = useCallback((id) => {
         const t = todos.find(t => t.id === id);
         if (!t) return 0;
-        return (t.timeLogs || []).reduce((acc, l) => acc + (l.durationMs || 0), 0);
+        const now = Date.now();
+        return (t.timeLogs || []).reduce((acc, l) => {
+            if (!l) return acc;
+            const finished = (l.durationMs || 0);
+            const live = !l.stoppedAt ? Math.max(0, now - l.startedAt) : 0;
+            return acc + finished + live;
+        }, 0);
+    }, [todos]);
+
+    const isTimerRunning = useCallback((id) => {
+        const t = todos.find(t => t.id === id);
+        if (!t) return false;
+        return (t.timeLogs || []).some(l => !l.stoppedAt);
     }, [todos]);
 
     const updateDueDate = useCallback((id, dueDate) => {
-        setTodos(prev => prev.map(t => t.id === id ? { ...t, dueDate } : t));
+        setTodos(prev => prev.map(t => t.id === id ? { ...t, dueDate: dueDate ? new Date(dueDate) : null } : t));
     }, []);
 
     const updateEstimate = useCallback((id, estimateMinutes) => {
@@ -193,6 +233,7 @@ const useTodosState = () => {
         startTimer,
         stopTimer,
         totalTimeMs,
+        isTimerRunning,
         updateDueDate,
         updateEstimate,
     };

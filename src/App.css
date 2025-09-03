@@ -1,14 +1,16 @@
-/* App.css */
 .app {
     min-height: 100vh;
-    background: var(--bg);
+    background: transparent;
+    /* let body background accents show through */
+    position: relative;
+    z-index: 1;
+    /* keep above body background blobs */
 }
 
 .content {
     padding-top: 6rem;
 }
 
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;

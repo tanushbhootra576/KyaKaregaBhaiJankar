@@ -45,7 +45,7 @@ export const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            {/* Global Footer mounted in App */}
+       
         </section>
     );
 }

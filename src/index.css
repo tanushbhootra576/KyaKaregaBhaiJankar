@@ -31,32 +31,47 @@
     --primary-600: #feb47b;
     --primary-700: #ff6a00;
     --accent: #4f8cff;
+    /* glass backgrounds */
+    --surface-glass: rgba(255, 255, 255, 0.7);
+    --shadow-soft: 0 8px 30px rgba(2, 6, 23, 0.08);
+    /* background accents to match navbar */
+    --bg-accent-1: #ff7e5f;
+    --bg-accent-2: #4f8cff;
+    --bg-blob-opacity: 0.35;
 }
 
 [data-theme="dark"] {
-    /* Modern dark theme palette */
+
     --bg: #0b1120;
-    /* slate-950 */
+
     --bg-soft: #0f172a;
-    /* slate-900 */
+
     --surface: #0f172a;
-    /* main cards/nav */
+
     --surface-2: #1f2937;
-    /* secondary surfaces */
+
     --border: #334155;
-    /* slate-700 */
+
     --text: #e5e7eb;
-    /* neutral-200 */
+
     --muted: #94a3b8;
-    /* slate-400 */
+
     --primary: #7c3aed;
-    /* violet-600 */
+
     --primary-600: #8b5cf6;
-    /* violet-500 */
+
     --primary-700: #a78bfa;
-    /* violet-400 */
+
     --accent: #22d3ee;
-    /* cyan-400 */
+    /* glass backgrounds */
+    --surface-glass: rgba(15, 23, 42, 0.55);
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.28);
+    /* background accents to match navbar */
+    --bg-accent-1: #ff7e5f;
+    /* keep harmony with navbar gradient */
+    --bg-accent-2: #4f8cff;
+    --bg-blob-opacity: 0.25;
+
 }
 
 * {
@@ -97,4 +112,54 @@ body {
     min-height: 100vh;
     background: var(--bg);
     color: var(--text);
+    position: relative;
+    /* enable background pseudo-elements */
+}
+
+/* thematic background blobs that echo the navbar gradient */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    width: 48vw;
+    height: 48vw;
+    max-width: 780px;
+    max-height: 780px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: var(--bg-blob-opacity, 0.3);
+}
+
+body::before {
+    top: -12vw;
+    left: -8vw;
+    background: radial-gradient(closest-side, var(--bg-accent-1), transparent 70%);
+}
+
+body::after {
+    right: -8vw;
+    bottom: -14vw;
+    background: radial-gradient(closest-side, var(--bg-accent-2), transparent 70%);
+}
+
+@media (max-width: 900px) {
+
+    body::before,
+    body::after {
+        width: 70vw;
+        height: 70vw;
+        filter: blur(40px);
+    }
+
+    body::before {
+        top: -20vw;
+        left: -20vw;
+    }
+
+    body::after {
+        right: -20vw;
+        bottom: -24vw;
+    }
 }

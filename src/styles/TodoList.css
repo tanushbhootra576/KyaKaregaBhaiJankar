@@ -1,6 +1,4 @@
-/* ===========================
-     Container & Layout
-     =========================== */
+
 .todo-list-container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -11,9 +9,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* ===========================
-     Header & Progress
-     =========================== */
+
 .todo-header {
     margin-bottom: 2rem;
 }
@@ -40,9 +36,7 @@
     transition: width .4s ease-in-out;
 }
 
-/* ===========================
-     Controls & Filters
-     =========================== */
+
 .todo-controls {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -80,7 +74,6 @@
     color: var(--muted);
 }
 
-/* Ghost action in controls (Save Search) */
 .todo-controls>button {
     padding: .7rem 1rem;
     background: transparent;
@@ -96,9 +89,6 @@
     border-color: var(--primary-600);
 }
 
-/* ===========================
-     Form (Add Todo)
-     =========================== */
 .todo-form {
     display: flex;
     gap: .5rem;
@@ -136,18 +126,12 @@
     background: var(--primary-600);
 }
 
-/* ===========================
-     Todos Wrapper
-     =========================== */
 .todos-wrapper {
     display: flex;
     flex-direction: column;
     gap: .75rem;
 }
 
-/* ===========================
-     Tags (shared)
-     =========================== */
 .tags {
     display: flex;
     gap: 6px;
@@ -164,9 +148,6 @@
     font-size: 12px;
 }
 
-/* ===========================
-     Responsive
-     =========================== */
 @media (max-width: 900px) {
     .todo-list-container {
         max-width: 95vw;

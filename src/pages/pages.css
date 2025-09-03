@@ -44,9 +44,11 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.25rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft, 0 1px 3px rgba(0, 0, 0, 0.1));
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .card:hover {
@@ -128,13 +130,6 @@
     gap: 8px;
 }
 
-/* Helper for responsive charts to keep height consistent */
-.chart-wrap {
-    width: 100%;
-    min-height: 240px;
-}
-
-/* remove bullets in landing page lists */
 .landing ul {
     list-style: none;
     padding-left: 0;
@@ -145,7 +140,7 @@
     padding: 6px 0;
 }
 
-/* footer styles moved to components/Footer.css */
+
 
 .board {
     display: grid;
@@ -155,28 +150,29 @@
 
 .board-col {
     text-align: center;
-    color: black;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
     padding: 10px;
     min-height: 400px;
-    border: 1px solid #363636;
+    box-shadow: var(--shadow-soft);
 }
 
 .board-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
     padding: 10px;
     margin-bottom: 8px;
 }
 
 .calendar-wrap {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
     padding: 8px;
+    box-shadow: var(--shadow-soft);
 }
 
 .cal-header {
@@ -198,23 +194,23 @@
 
 .cal-cell {
     min-height: 100px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
     padding: 6px;
     display: flex;
     flex-direction: column;
 }
 
 .cal-head {
-    color: black;
-    background: #f3f4f6;
+    color: var(--text);
+    background: var(--surface-2);
     border: none;
     font-weight: 600;
 }
 
 .cal-date {
-    color: black;
+    color: var(--text);
     font-size: 12px;
 
     margin-bottom: 4px;
@@ -222,7 +218,7 @@
 
 .cal-tasks {
     display: flex;
-    color: black;
+    color: var(--text);
     flex-direction: column;
     gap: 4px;
 }
@@ -231,8 +227,8 @@
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    background: #f9fafb;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -240,26 +236,26 @@
 
 .cal-task.high {
     border-color: #fecaca;
-    background: #fee2e2;
+    background: color-mix(in srgb, var(--danger) 12%, transparent);
 }
 
 .cal-task.medium {
     border-color: #fde68a;
-    background: #fef3c7;
+    background: color-mix(in srgb, var(--warn) 12%, transparent);
 }
 
 .cal-task.low {
     border-color: #bbf7d0;
-    background: #dcfce7;
+    background: color-mix(in srgb, var(--success) 12%, transparent);
 }
 
 .cal-more {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--muted);
 }
 
 .cal-cell.today {
-    outline: 2px solid #60a5fa;
+    outline: 2px solid var(--accent);
 }
 
 .cal-cell.muted {

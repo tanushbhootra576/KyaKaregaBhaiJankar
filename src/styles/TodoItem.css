@@ -85,7 +85,6 @@
     color: var(--text);
 }
 
-/* subtle placeholder color */
 .meta-row input::placeholder,
 .subtasks input::placeholder,
 .dates input::placeholder {
@@ -93,7 +92,6 @@
     opacity: .8;
 }
 
-/* style Add Tags as a secondary/ghost button */
 .meta-row button {
     padding: .45rem .75rem;
     border: 1px solid var(--border);
@@ -161,7 +159,6 @@
     background: var(--primary-600);
 }
 
-/* muted style for the "min logged" text */
 .timer span:last-child {
     color: var(--muted);
 }
@@ -207,7 +204,7 @@
     cursor: pointer;
 }
 
-/* Priority accent line */
+
 .todo-item[data-priority="high"]::before,
 .todo-item[data-priority="medium"]::before,
 .todo-item[data-priority="low"]::before {
@@ -233,14 +230,13 @@
     background: #22c55e;
 }
 
-/* Mobile-friendly hover states */
+
 @media (hover: hover) {
     .todo-item:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
     }
 }
 
-/* Mobile-specific styles */
 @media (max-width: 600px) {
     .todo-header {
         flex-wrap: wrap;

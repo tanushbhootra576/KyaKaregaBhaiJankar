@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pin, PinOff, Trash2, AlertTriangle } from 'lucide-react';
 import '../styles/TodoItem.css';
 
@@ -22,6 +22,34 @@ export const TodoItem = ({
     const [newSubTask, setNewSubTask] = useState('');
     const [tagInput, setTagInput] = useState('');
     const msToMinutes = (ms) => Math.round(ms / 60000);
+    const [tick, setTick] = useState(0);
+   
+    useEffect(() => {
+        const i = setInterval(() => setTick(t => t + 1), 30000);
+        return () => clearInterval(i);
+    }, []);
+
+    
+    const toDate = (v) => {
+        if (!v) return null;
+        return v instanceof Date ? v : new Date(v);
+    };
+    const pad = (n) => String(n).padStart(2, '0');
+    const inputValue = useMemo(() => {
+        const d = toDate(todo.dueDate);
+        if (!d) return '';
+        const y = d.getFullYear();
+        const m = pad(d.getMonth() + 1);
+        const day = pad(d.getDate());
+        return `${y}-${m}-${day}`; 
+    }, [todo.dueDate]);
+    const labelValue = useMemo(() => {
+        const d = toDate(todo.dueDate);
+        if (!d) return '';
+       
+        return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+    }, [todo.dueDate]);
+    const running = useMemo(() => (todo.timeLogs || []).some(l => !l.stoppedAt), [todo.timeLogs]);
 
     const handleSubmitSubTask = (e) => {
         e.preventDefault();
@@ -78,15 +106,16 @@ export const TodoItem = ({
             <div className="dates">
                 <input
                     type="date"
-                    value={todo.dueDate ? `${new Date(todo.dueDate).getFullYear()}-${String(new Date(todo.dueDate).getMonth() + 1).padStart(2, '0')}-${String(new Date(todo.dueDate).getDate()).padStart(2, '0')}` : ''}
+                    value={inputValue}
                     onChange={(e) => {
                         const v = e.target.value;
                         if (!v) return onUpdateDueDate(todo.id, null);
                         const [y, m, d] = v.split('-').map(Number);
+                     
                         onUpdateDueDate(todo.id, new Date(y, m - 1, d));
                     }}
                 />
-                {todo.dueDate && <span className={`due ${overdue ? 'overdue' : ''}`}>Due: {new Date(todo.dueDate).toLocaleDateString()}</span>}
+                {todo.dueDate && <span className={`due ${overdue ? 'overdue' : ''}`}>Due: {labelValue}</span>}
                 {overdue && (
                     <span className="warn"><AlertTriangle size={14} /> Overdue</span>
                 )}
@@ -97,8 +126,12 @@ export const TodoItem = ({
                     Est:
                     <input type="number" min={0} style={{ width: 60, marginLeft: 4 }} value={todo.estimateMinutes || 0} onChange={(e) => onUpdateEstimate(todo.id, Number(e.target.value))} /> min
                 </label>
-                <button onClick={() => onStartTimer(todo.id)}>Start</button>
-                <button onClick={() => onStopTimer(todo.id)}>Stop</button>
+                <button
+                    onClick={() => (running ? onStopTimer(todo.id) : onStartTimer(todo.id))}
+                    aria-pressed={running}
+                >
+                    {running ? 'Stop' : 'Start'}
+                </button>
                 <span>{msToMinutes(totalTimeMs(todo.id))} min logged</span>
             </div>
 

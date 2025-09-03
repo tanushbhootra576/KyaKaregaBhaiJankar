@@ -18,7 +18,6 @@ function App() {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/tasks" element={<TasksPage />} />
                     <Route path="/board" element={<BoardPage />} />
-                    {/* temporary redirect for old path */}
                     <Route path="/kanban" element={<Navigate to="/board" replace />} />
                     <Route path="/calendar" element={<CalendarPage />} />
                     <Route path="/analytics" element={<AnalyticsPage />} />

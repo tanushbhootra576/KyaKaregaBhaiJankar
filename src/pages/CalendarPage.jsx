@@ -34,7 +34,8 @@ export const CalendarPage = () => {
 
     const tasksByDay = useMemo(() => {
         const map = new Map();
-        todos.filter(t => t.dueDate).forEach(t => {
+        // Show only not-completed tasks on the calendar
+        todos.filter(t => t.dueDate && !t.completed).forEach(t => {
             const d = new Date(t.dueDate);
             const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; // local date key
             if (!map.has(key)) map.set(key, []);
