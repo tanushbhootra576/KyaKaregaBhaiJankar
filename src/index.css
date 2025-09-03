@@ -34,17 +34,29 @@
 }
 
 [data-theme="dark"] {
-    --bg: #181c24;
-    --bg-soft: #23293a;
-    --surface: #23293a;
-    --surface-2: #23293a;
-    --border: #2d3340;
-    --text: #ffffff;
-    --muted: #b0b6c3;
-    --primary: #ff7e5f;
-    --primary-600: #feb47b;
-    --primary-700: #ff6a00;
-    --accent: #4f8cff;
+    /* Modern dark theme palette */
+    --bg: #0b1120;
+    /* slate-950 */
+    --bg-soft: #0f172a;
+    /* slate-900 */
+    --surface: #0f172a;
+    /* main cards/nav */
+    --surface-2: #1f2937;
+    /* secondary surfaces */
+    --border: #334155;
+    /* slate-700 */
+    --text: #e5e7eb;
+    /* neutral-200 */
+    --muted: #94a3b8;
+    /* slate-400 */
+    --primary: #7c3aed;
+    /* violet-600 */
+    --primary-600: #8b5cf6;
+    /* violet-500 */
+    --primary-700: #a78bfa;
+    /* violet-400 */
+    --accent: #22d3ee;
+    /* cyan-400 */
 }
 
 * {

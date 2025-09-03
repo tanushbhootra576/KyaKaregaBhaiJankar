@@ -21,7 +21,6 @@ export const LandingPage = () => {
                 <div className="feature-item"><Filter size={18} /> Custom filters & saved searches</div>
                 <div className="feature-item"><Clock3 size={18} /> Time tracking & estimates</div>
                 <div className="feature-item"><BarChart3 size={18} /> Insights dashboard</div>
-                <div className="feature-item"><Repeat size={18} /> Smart recurring templates</div>
                 <div className="feature-item"><Moon size={18} /> Dark mode</div>
                 <div className="feature-item"><CheckCircle2 size={18} /> Pinned & prioritized tasks</div>
             </div>

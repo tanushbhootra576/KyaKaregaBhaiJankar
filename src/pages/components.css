@@ -47,6 +47,7 @@
     border-radius: 16px;
     padding: 1.5rem;
     min-height: 500px;
+    color: black;
 }
 
 .column-header {
@@ -57,7 +58,7 @@
 
 .column-title {
     font-weight: 600;
-    color: var(--text);
+    color: black;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -155,4 +156,9 @@
 .status-high {
     background: var(--danger);
     color: white;
+}
+
+.board-col {
+    color: black;
+    background-color: pink;
 }
